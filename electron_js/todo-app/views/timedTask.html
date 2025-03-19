@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>اضافة مهمة جديدة</title>
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <form id="form" class="timed-form">
+        <div>
+            <label for="task">ادخل المهمة الجددة</label>
+            <input type="text" id="task" autofocus required>
+        </div>
+        <h3>ذكرني بها بعد</h3>
+        <div class="time-pick">
+            <div>
+                <label for="timed">ساعه</label>
+                <input type="number" name="hours" id="hours" value="0" class="pick-hours" required>
+            </div>
+            <div>
+                <label for="timed">دقيقة</label>
+                <input type="number" name="minutes" id="minutes" value="0" class="pick-minutes" required>
+            </div>
+        </div>  
+        <button type="submit">
+            <i class="fas fa-plus"></i>
+            اضافة مهمة
+        </button>
+    </form>
+    <script src="../assets/js/timedScript.js"></script>
+</body>
+
+</html>
