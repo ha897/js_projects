@@ -1,0 +1,103 @@
+<!-- <!DOCTYPE html> -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Pure HTML Page</title>
+    <meta name="theme-color" content="#1bb566" />
+
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <p>This is a simple paragraph on a pure HTML page.</p>
+    <a href="https://www.example.com">Visit Example Website</a>
+    <button onclick="subscribeUserToPush()">
+      Subscribe to Push Notifications
+    </button>
+    <button onclick="sendNotification()">send notification</button>
+
+    <script>
+          const publicKey = "BHQhFebrzHA-ZZuhkx7LdwIzT1YUGaU0MIAhk8tGo_IRw8QnySPbOiWkmJCNf5Ff6FV-1IWFu0lBJVTee72c0zQ";
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js", { scope: "/" });
+
+        if ("SyncManager" in window) {
+          navigator.serviceWorker.ready.then(function (sw) {
+            console.log("Sync registering...");
+            sw.sync.register("add").then(() => {
+              console.log("Sync registered successfully");
+            });
+          });
+        }
+        //نطلب السماح من الفرونت اند
+        if ("Notification" in window) {
+          Notification.requestPermission().then(function (permission) {
+            console.log("Notification permission:", permission);
+          });
+          //داله ترسل استجابه مع الفابيد وتاخذ من الخادم المفتاح العام
+            }
+      }
+async function subscribeUserToPush() {
+            try {
+              const registration =
+                await navigator.serviceWorker.getRegistration();
+              if (!registration) {
+                alert("لم يتم تسجيل عامل خدمة لهذا الموقع");
+                return;
+              }
+              // طلب اذن من المستخدم
+              const permission = await Notification.requestPermission();
+              // اذلا رفض المستخدم
+              if (permission !== "granted") {
+                console.error("Rejected permission");
+                return;
+              }
+              // ارسال رساله الاشتراك الى الخادم
+              const subscription = await registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: urlBase64ToUint8Array(publicKey),
+              });
+
+              await fetch("/subscribe", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                // ؤساله تاكيد الاشتراك
+                body: JSON.stringify(subscription),
+              });
+              console.log(subscription);
+
+              console.log("subscription is done");
+            } catch (error) {
+              console.log("failed subscription: ", error);
+            }
+          }
+          async function sendNotification() {
+            await fetch("/send-notification", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            console.log("notification sent");
+          }
+      
+      // تحول بيز64 الى مصفوفه من نوع Uint8Array مصفوفة ارقام صحيحة هذا التنسيق هو المطلوب
+      function urlBase64ToUint8Array(base64String) {
+        const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+        const base64 = (base64String + padding)
+          .replace(/\-/g, "+")
+          .replace(/_/g, "/");
+        const rawData = window.atob(base64);
+        const outputArray = new Uint8Array(rawData.length);
+        for (let i = 0; i < rawData.length; ++i) {
+          outputArray[i] = rawData.charCodeAt(i);
+        }
+        return outputArray;
+      }
+    </script>
+  </body>
+</html>
