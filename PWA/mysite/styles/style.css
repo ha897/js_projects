@@ -1,0 +1,134 @@
+    :root {
+    --dark: #4d4d4d;
+    --light: #a6a6a6;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: var(--dark);
+}
+
+img {
+    display: block;
+    margin: 5px auto;
+    max-width: 500px;
+    width: 100%;
+}
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--light);
+    display: flex;
+    gap:20px;
+}
+.container > *{
+    width: 50%;
+}
+
+label {
+    display: block;
+    margin-top: 20px 0px 5px 0px;
+    font-weight: bold;
+}
+input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    margin: 5px 0px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: var(--dark);
+    color: var(--light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: var(--light);
+}
+input:focus {
+    border-color: var(--dark);
+}
+p {
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: sans-serif, 'Amiri', serif;
+    font-size: 18px;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.rightAlign {
+    float: right;
+}
+
+li {
+    margin: 10px;
+}
+li a {
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, li:hover {
+    background-color: var(--dark);
+    color: white;
+}
+
+.col50 {
+    width: 50%;
+    margin: 0px 5px;
+    padding: 10px 10px;
+}
+@media (max-width: 700px) {
+    .col50 {
+        width: 100%;
+        display: block;
+    }
+}
+
+.grayBorder {
+    border: solid 1px var(--light);
+}
+
+.grayBackground {
+    background-color: var(--dark);
+}
+.calcName{
+    text-align: center;
+}
+#history{
+    overflow: auto;
+    max-height: 150px;
+}
