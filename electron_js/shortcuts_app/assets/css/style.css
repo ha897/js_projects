@@ -1,0 +1,16 @@
+:root{
+    --blue-color:#488aec;
+    --green-color:#198754;
+}
+
+@font-face {
+    font-family: "SourceCodePro Regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../webfonts/SourceCodePro-Regular.ttf");
+}
+body {
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}

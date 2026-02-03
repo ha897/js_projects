@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>add file command</title>
+    <link rel="stylesheet" href="../assets/css/commandStyle.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">add file shortcut</h1>
+        <form>
+            <span class="shortcutContainer"><input class="form-control keyboardInput" required> + <input
+                    class="form-control keyboardInput" required></span>
+            <button class="btn btn-secondary addKey">+</button>
+            <div class="command-holder">
+                <textarea class="command"></textarea>
+            </div>
+            <input class="form-control command-path" required>
+            <button type="submit" class="btn btn-primary add-shortcut">add shortcut</button>
+        </form>
+    </div>
+    <script src="../assets/js/commandScript.js"></script>
+</body>
+
+</html>

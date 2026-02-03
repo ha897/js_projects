@@ -1,0 +1,215 @@
+<!-- new disign -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>add file command</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+    <h1>add file shortcut</h1>
+        <form>
+            <span class="shortcutContainer"><input class="form-control keyboardInput" required> + <input class="form-control keyboardInput"
+                required></span>
+        <button class="btn btn-secondary addKey">+</button>
+        <div class="command-holder">
+            <textarea class="command"></textarea>
+        </div>
+        <input class="form-control command-path" required>
+        <button type="submit" class="btn btn-primary add-shortcut">add shortcut</button>
+    </form>
+</div>
+    <script src="../assets/js/commandScript.js"></script> 
+</body>
+
+</html> -->
+<style>
+    :root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --danger: #dc2626;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: var(--text);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.card-header h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.card-header span {
+  font-size: 22px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table thead {
+  color: var(--muted);
+}
+
+.table th,
+.table td {
+  padding: 10px 6px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Shortcut badge */
+.shortcut {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* Footer buttons */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+</style>
+<div class="container">
+
+  <!-- Files shortcuts -->
+  <div class="card">
+    <div class="card-header">
+      <span>📁</span>
+      <h2>اختصارات الملفات</h2>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Shortcut</th>
+          <th>File Path</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="shortcut">Ctrl + Alt + Q</span></td>
+          <td>C:\Users\alshi\Downloads\mongodb.msi</td>
+          <td>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-footer">
+      <button class="btn btn-danger">Delete All</button>
+      <button class="btn btn-primary">New Shortcut</button>
+    </div>
+  </div>
+
+  <!-- Commands shortcuts -->
+  <div class="card">
+    <div class="card-header">
+      <span>⌨️</span>
+      <h2>اختصارات الأوامر</h2>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Shortcut</th>
+          <th>Command</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="shortcut">Ctrl + Alt + F</span></td>
+          <td>dir</td>
+          <td>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card-footer">
+      <button class="btn btn-danger">Delete All</button>
+      <button class="btn btn-primary">New Shortcut</button>
+    </div>
+  </div>
+
+</div>

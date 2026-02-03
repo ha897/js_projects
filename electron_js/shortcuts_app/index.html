@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <section class="card file-shortcut">
+        <div class="card-body">
+            <h3 class="card-title">الملفات الاختصارات</h3>
+            <table class="files-shortcut">
+            </table>
+            <div class="BTNs">
+
+                <button class="btn btn-danger delete-all">delete all</button>
+                <button class="btn btn-primary new-shortcut">new shortcut</button>
+            </div>
+        </div>
+    </section>
+    <section class="card command-shortcut">
+        <div class="card-body">
+
+            <h3 class="card-title">الملفات الاوامر</h3>
+            <table class="commandes-shortcut">
+            </table>
+            <div class="BTNs">
+                <button class="btn btn-danger delete-all">delete all</button>
+                <button class="btn btn-primary new-shortcut">new shortcut</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        require('./assets/js/index.js');
+    </script>
+</body>
+
+</html>
