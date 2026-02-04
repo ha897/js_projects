@@ -48,12 +48,22 @@ function createTray() {
 }
 
 /* ================= Main Window ================= */
-
+function getIconPath() {
+  if (process.platform === 'win32') {
+    return path.join(__dirname, 'assets/images/icon.ico');
+  } else if (process.platform === 'darwin') {
+    return path.join(__dirname, 'assets/images/icon.icns');
+  } else {
+    return path.join(__dirname, 'assets/images/icon.png');
+  }
+}
 // Create main application window
 function createMainWin() {
     mainWin = new BrowserWindow({
         width: 860,
         height: 600,
+          resizable: false,
+          icon: getIconPath(),
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -300,6 +310,7 @@ function createShortcutFileWin() {
         width: 400,
         height: 400,
         parent: mainWin,
+        modal: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -327,6 +338,7 @@ function createShortcutCommandWin() {
         width: 400,
         height: 450,
         parent: mainWin,
+        modal: true,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
