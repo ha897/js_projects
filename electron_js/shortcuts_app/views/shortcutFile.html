@@ -1,41 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <title>add file shortcut</title>
-        <link rel="stylesheet" href="../assets/css/fileStyle.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>add file shortcut</title>
+    <link rel="stylesheet" href="../assets/css/fileStyle.css" />
     <!-- <link rel="stylesheet" href="index.css"> -->
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <h1 class="title">add file shortcut</h1>
-        <form>
+      <h1>Add File Shortcut</h1>
+      <p class="subtitle">Create a shortcut to open a file</p>
+
+      <!-- Shortcut Keys -->
+      <form>
+        <div class="section">
+
+                  <label>Shortcut Keys</label>
+
             <span class="shortcutContainer">
-                <input class="form-control keyboardInput" required> + <input class="form-control keyboardInput"
-                    required>
+                <input class="form-control keyboardInput" required>
+                 <span class="plus">+</span> 
+                 <input class="form-control keyboardInput" required>
                 </span>
-                <button class="btn btn-secondary addKey">+</button>
+                <div class="btn-group" role="group" aria-label="Basic example" style="margin-top:10px;">
 
-            <!-- <div class="input-group mb-3"> -->
-            <!-- <input type="text" class="form-control"> -->
-            <!-- </div> -->
-
-            <div class="buttons-holder">
-                <button type="button" class="btn btn-primary programFile">
-                    upload file
-                </button>
-
-                <button type="submit" class="btn btn-primary add-shortcut">
-                    add shortcut
-                </button>
+                <button type="button" class="btn btn-secondary addKey">+</button>
+                <button type="button" class="btn btn-secondary delKey" disabled>-</button>
+                </div>
             </div>
-        </form>
+        <!-- <span class="shortcutContainer section">
+          <input class="form-control keyboardInput" required /> +
+          <input class="form-control keyboardInput" required />
+        </span>
+        <button class="btn btn-secondary addKey">+</button> -->
+
+        <!-- <div class="input-group mb-3"> -->
+        <!-- <input type="text" class="form-control"> -->
+        <!-- </div> -->
+            <!-- File Path -->
+    <div class="section">
+      <label>File Path</label>
+      <div class="file-row">
+        <input type="text" class="file-path" placeholder="Select a file..." required style="pointer-events: none;" />
+        <!-- <button class="browseFile programFile" type="button">Browse</button> -->
+        <button class="btn btn-primary programFile" type="button">Browse</button>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary add-shortcut" id="saveShortcut">Add Shortcut</button>
+    </div>
+        <div class="buttons-holder">
+          <!-- <button type="button" class="btn btn-primary programFile">
+            upload file
+          </button> -->
+
+          <!-- <button type="submit" class="btn btn-primary add-shortcut">
+            add shortcut
+          </button> -->
+        </div>
+      </form>
     </div>
     <script src="../assets/js/fileScript.js"></script>
-</body>
-
+  </body>
 </html>

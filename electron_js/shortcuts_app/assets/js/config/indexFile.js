@@ -2,6 +2,7 @@ const { ipcRenderer } = require("electron");
 const connection = require("./connection");
 
 const $ = require("jquery");
+const RENDERER_ID = "files-shortcut"; // Unique ID for this renderer, used in IPC messages
 
 const deleteAllBTN = $(".file-shortcut .delete-all");
 const addShortcutBTN = $(".file-shortcut .new-shortcut");
@@ -25,15 +26,27 @@ ipcRenderer.on("add-file-shortcut-DB", async (event, shortcutFormula, filePath) 
     }
 });
 
+ipcRenderer.on("reload-shortcuts", (event, renderer_id) => {
+    if (renderer_id === RENDERER_ID){
+        return
+    }
+      console.log("Reloading F shortcuts...");
+      ipcRenderer.send("print-message", "Reloading F shortcuts...", "F renderer");
+    showFilesShortcut();
+});
 // Listen for event to delete a file shortcut from database only
 ipcRenderer.on("delete-file-shortcut-DB", async (event, shortcut) => {
     try {
-        await connection.remove({
-            from: "FilesShortcuts",
-            where: { shortcut: shortcut }
-        });
-        console.log(`Shortcut ${shortcut} deleted from database`);
-    } catch (err) {
+    // TODO: whene add new type of shortcut, we should add it here to be deleted from database
+        await Promise.all([
+    connection.remove({ from: "CommandShortcuts", where: { shortcut } }),
+    connection.remove({ from: "FilesShortcuts", where: { shortcut } })
+]);
+
+ipcRenderer.send("reload-shortcuts", RENDERER_ID);
+
+console.log(`Shortcut ${shortcut} deleted from database`);
+    } catch (err) { 
         console.error("Error deleting file shortcut:", err);
     }
 });
@@ -86,11 +99,17 @@ async function showFilesShortcut() {
                 try {
                     ipcRenderer.send("remove-global-shortcut", shortcutINFO.shortcut);
 
+                    // await connection.remove({
+                    //     from: "FilesShortcuts",
+                    //     where: { shortcut: shortcutINFO.shortcut }
+                    // });
+// 
                     await connection.remove({
                         from: "FilesShortcuts",
                         where: { shortcut: shortcutINFO.shortcut }
                     });
 
+// 
                     await showFilesShortcut();
                 } catch (err) {
                     console.error("Error deleting shortcut:", err);
@@ -159,3 +178,87 @@ addShortcutBTN.on("click", () => {
         console.error("Error loading file shortcuts:", err);
     }
 })();
+
+// test
+// async function showFilesShortcutFromDB() {
+//     commandsShortcut.empty();
+
+//     let shortcuts = [];
+//     try {
+//         shortcuts = await connection.select({
+//             from: "FilesShortcuts"
+//         });
+//     } catch (err) {
+//         console.error("Error fetching file shortcuts:", err);
+//         commandsShortcut.html(
+//             "<p class='no-shortcuts'>Failed to load file shortcuts</p>"
+//         );
+//         return;
+//     }
+
+//     if (shortcuts.length === 0) {
+//         deleteAllBTN.hide();
+//         commandsShortcut.html(
+//             "<p class='no-shortcuts'>No file shortcuts found</p>"
+//         );
+//         return;
+//     }
+
+//     deleteAllBTN.show();
+
+//     /* ===== TABLE HEADER ===== */
+//     const thead = $("<thead>");
+//     const headerRow = $("<tr>");
+
+//     ["Shortcut", "File Path", "Delete"].forEach(text => {
+//         headerRow.append($("<th>").text(text));
+//     });
+
+//     thead.append(headerRow);
+//     commandsShortcut.append(thead);
+
+//     /* ===== TABLE BODY ===== */
+//     const tbody = $("<tbody>");
+
+//     for (const shortcutINFO of shortcuts) {
+//         const row = $("<tr>");
+
+//         const shortcutCell = $("<td>")
+//             .addClass("shortcut-cell")
+//             .append($("<span>").text(shortcutINFO.shortcut));
+
+//         const pathCell = $("<td>")
+//             .text(shortcutINFO.file_path || "No Path")
+//             .attr("title", shortcutINFO.file_path || "");
+
+//         const deleteBTN = $("<button>")
+//             .text("Delete")
+//             .addClass("btn btn-danger btn-sm")
+//             .on("click", async () => {
+//                 if (!confirm(`Delete shortcut ${shortcutINFO.shortcut}?`)) return;
+
+//                 try {
+//                     await connection.remove({
+//                         from: "FilesShortcuts",
+//                         where: { shortcut: shortcutINFO.shortcut }
+//                     });
+
+//                     await showFilesShortcutFromDB();
+//                 } catch (err) {
+//                     console.error("Error deleting file shortcut:", err);
+//                 }
+//             });
+
+//         const deleteCell = $("<td>").append(deleteBTN);
+
+//         row.append(
+//             shortcutCell,
+//             pathCell,
+//             deleteCell
+//         );
+
+//         tbody.append(row);
+//     }
+
+//     commandsShortcut.append(tbody);
+// }

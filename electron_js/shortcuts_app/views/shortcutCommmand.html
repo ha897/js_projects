@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>add file command</title>
+    <!-- <link rel="stylesheet" href="../assets/css/style.css"> -->
     <link rel="stylesheet" href="../assets/css/commandStyle.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -11,16 +12,36 @@
 
 <body>
     <div class="container">
-        <h1 class="title">add file shortcut</h1>
+        <h1 class="title">Add Command Shortcut</h1>
+
+            <p class="subtitle">Create a keyboard shortcut to run a command</p>
+
         <form>
-            <span class="shortcutContainer"><input class="form-control keyboardInput" required> + <input
-                    class="form-control keyboardInput" required></span>
-            <button class="btn btn-secondary addKey">+</button>
-            <div class="command-holder">
-                <textarea class="command"></textarea>
+                <div class="section">
+
+                  <label>Shortcut Keys</label>
+
+            <span class="shortcutContainer">
+                <input class="form-control keyboardInput" required>
+                 <span class="plus">+</span> 
+                 <input class="form-control keyboardInput" required>
+                </span>
+                <div class="btn-group" role="group" aria-label="Basic example" style="margin-top:10px;">
+
+                <button class="btn btn-secondary addKey">+</button>
+                <button class="btn btn-secondary delKey" disabled>-</button>
+                </div>
             </div>
-            <input class="form-control command-path" required>
+            <div class="section command-holder">
+                <label>Command</label>
+                <textarea class="command" placeholder="> node index.js"></textarea>
+            </div>
+            <div class="section">
+              <label>Working Directory</label>
+              <input class="form-control command-path" required type="text" placeholder="C:\Users\...\Desktop">
+            </div>
             <button type="submit" class="btn btn-primary add-shortcut">add shortcut</button>
+    </div>
         </form>
     </div>
     <script src="../assets/js/commandScript.js"></script>

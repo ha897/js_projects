@@ -1,46 +1,96 @@
+
 @import "./style.css";
-.title{
-  margin-top: 15px;
-  margin-bottom: 12px;
-}
-.keyboardInput {
-  min-width: 12px !important;
-  display: inline-block !important;
-}
-.keyboardInput {
-  width: 12px;
-  min-width: 12px;
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
-
-.command-holder {
-  margin: 10px;
+.container{
+  margin: 20px;
+}
+.title {
+  margin: 0;
+  font-size: 22px;
+  color: #222;
 }
 
-.command {
-  width: 300px;
-  height: 150px;
-  resize: none;
-  background-color: black;
-  color: white;
-  font-family: "SourceCodePro Regular", sans-serif;
-  padding: 10px 10px 10px 20px;
+.subtitle {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
 }
 
-.command-holder::before {
-  content: "> ";
-  color: white;
-  position: absolute;
-  padding: 10px 5px;
+.section {
+  margin-bottom: 18px;
 }
 
-.container {
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.keys {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.shortcutContainer{
+  display: flex;
+  gap: 10px;
+overflow-wrap: break-word;
+}
+.keys input {
+  width: 70px;
+  padding: 8px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-.addKey {
-  margin-left: 5px;
-  border-radius: 100% !important;
-  padding: 0px 6px !important;
+.keys span {
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+
+textarea {
+  background: #111;
+  color: #0f0;
+  font-family: "SourceCodePro Regular", monospace;
+  min-height: 90px;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3b82f6;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #1d4ed8;
 }

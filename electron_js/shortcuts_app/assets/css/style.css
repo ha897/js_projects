@@ -3,14 +3,24 @@
     --green-color:#198754;
 }
 
-@font-face {
-    font-family: "SourceCodePro Regular";
+/* @font-face {
     font-style: normal;
     font-weight: 400;
     src: url("../webfonts/SourceCodePro-Regular.ttf");
+} */
+@font-face {
+    font-family: "SourceCodePro Regular";
+  /* font-family: "SourceCodePro"; */
+  font-style: normal;
+  font-weight: 400;
+  src: url("../webfonts/SourceCodePro-Regular.ttf") format("truetype");
+    /* src: url(data:font/truetype;charset=utf-8;base64,BASE64_CODE_HERE) format('truetype'); */
+
 }
+
 body {
-    margin: 20px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    background-color: #f4f6f9!important;
 }

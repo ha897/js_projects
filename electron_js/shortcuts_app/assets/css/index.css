@@ -2,11 +2,14 @@
 
 
 
+
 body>section {
-    height: 400px!important;
+    height: 500px!important;
     margin: 10px 5px;
     position: relative;
     width: 400px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+
 }
 
 table {
@@ -69,7 +72,7 @@ table tr > .shortcut-cell > span{
 
         table tbody {
             display: block;
-            height: 255px;
+            height: 355px;
             overflow-y:auto;
             padding-right: 5px;
         }
